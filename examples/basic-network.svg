@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" data-diagram-id="basic-network" data-diagram-name="Basic Network Architecture" data-diagram-version="1.0">
+  <!-- Component Definitions -->
+  <defs>
+    <!-- Router Component -->
+    <symbol id="component-router" class="extractable-component" viewBox="0 0 100 100" data-component-type="router" data-component-name="Router">
+      <rect x="10" y="20" width="80" height="60" rx="5" ry="5" fill="#D4E6F1" stroke="#2874A6" stroke-width="2"/>
+      <line x1="50" y1="20" x2="50" y2="5" stroke="#2874A6" stroke-width="2"/>
+      <circle cx="50" cy="5" r="3" fill="#2874A6"/>
+      <text x="50" y="55" text-anchor="middle" font-family="Arial" font-size="14">Router</text>
+    </symbol>
+
+    <!-- Firewall Component -->
+    <symbol id="component-firewall" class="extractable-component" viewBox="0 0 100 100" data-component-type="firewall" data-component-name="Firewall">
+      <path d="M10,20 L90,20 L90,80 L10,80 Z" fill="#FCF3CF" stroke="#D4AC0D" stroke-width="2"/>
+      <path d="M10,20 L90,80 M10,80 L90,20" stroke="#D4AC0D" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="50" y="55" text-anchor="middle" font-family="Arial" font-size="14">Firewall</text>
+    </symbol>
+
+    <!-- Server Component -->
+    <symbol id="component-server" class="extractable-component" viewBox="0 0 100 120" data-component-type="server" data-component-name="Server">
+      <rect x="20" y="20" width="60" height="80" rx="2" ry="2" fill="#D5F5E3" stroke="#1E8449" stroke-width="2"/>
+      <rect x="30" y="30" width="40" height="5" rx="1" ry="1" fill="#1E8449"/>
+      <rect x="30" y="40" width="40" height="5" rx="1" ry="1" fill="#1E8449"/>
+      <rect x="30" y="50" width="40" height="5" rx="1" ry="1" fill="#1E8449"/>
+      <text x="50" y="75" text-anchor="middle" font-family="Arial" font-size="12">Server</text>
+    </symbol>
+
+    <!-- Database Server Component -->
+    <symbol id="component-database" class="extractable-component" viewBox="0 0 100 120" data-component-type="database" data-component-name="Database Server">
+      <ellipse cx="50" cy="30" rx="30" ry="15" fill="#D6EAF8" stroke="#2E86C1" stroke-width="2"/>
+      <path d="M20,30 L20,90 C20,105 80,105 80,90 L80,30" fill="#D6EAF8" stroke="#2E86C1" stroke-width="2"/>
+      <text x="50" y="65" text-anchor="middle" font-family="Arial" font-size="12">Database</text>
+      <text x="50" y="80" text-anchor="middle" font-family="Arial" font-size="12">Server</text>
+    </symbol>
+
+    <!-- Client Component -->
+    <symbol id="component-client" class="extractable-component" viewBox="0 0 100 100" data-component-type="client" data-component-name="Client Device">
+      <rect x="25" y="20" width="50" height="35" rx="2" ry="2" fill="#EBDEF0" stroke="#8E44AD" stroke-width="2"/>
+      <rect x="25" y="55" width="50" height="5" fill="#8E44AD"/>
+      <path d="M35,60 L65,60 L60,75 L40,75 Z" fill="#EBDEF0" stroke="#8E44AD" stroke-width="2"/>
+      <text x="50" y="40" text-anchor="middle" font-family="Arial" font-size="12">Client</text>
+    </symbol>
+    
+    <!-- Arrow markers -->
+    <marker id="arrow-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4D5656"/>
+    </marker>
+  </defs>
+  
+  <!-- Component Instances -->
+  <g id="diagram-content">
+    <!-- Background -->
+    <rect width="100%" height="100%" fill="#FFFFFF"/>
+    
+    <!-- Router -->
+    <g id="instance-router" class="component-instance" data-instance-type="router" data-instance-name="Core Router" transform="translate(350,50)">
+      <use href="#component-router" width="100" height="100"/>
+    </g>
+    
+    <!-- Firewall -->
+    <g id="instance-firewall" class="component-instance" data-instance-type="firewall" data-instance-name="Network Firewall" transform="translate(350,170)">
+      <use href="#component-firewall" width="100" height="100"/>
+    </g>
+    
+    <!-- Web Server -->
+    <g id="instance-web-server" class="component-instance" data-instance-type="server" data-instance-name="Web Server" transform="translate(250,300)">
+      <use href="#component-server" width="100" height="120"/>
+    </g>
+    
+    <!-- Database Server -->
+    <g id="instance-db-server" class="component-instance" data-instance-type="database" data-instance-name="Main Database" transform="translate(450,300)">
+      <use href="#component-database" width="100" height="120"/>
+    </g>
+    
+    <!-- Client Devices -->
+    <g id="instance-client1" class="component-instance" data-instance-type="client" data-instance-name="Client Device 1" transform="translate(250,450)">
+      <use href="#component-client" width="100" height="100"/>
+    </g>
+    
+    <g id="instance-client2" class="component-instance" data-instance-type="client" data-instance-name="Client Device 2" transform="translate(450,450)">
+      <use href="#component-client" width="100" height="100"/>
+    </g>
+  </g>
+  
+  <!-- Connections -->
+  <g id="connections">
+    <!-- Router to Firewall -->
+    <g id="connection-router-firewall" class="diagram-connection" data-connection-from="instance-router" data-connection-to="instance-firewall" data-connection-type="network">
+      <path d="M400,150 L400,170" fill="none" stroke="#4D5656" stroke-width="2" marker-end="url(#arrow-end)"/>
+    </g>
+    
+    <!-- Firewall to Web Server -->
+    <g id="connection-firewall-web" class="diagram-connection" data-connection-from="instance-firewall" data-connection-to="instance-web-server" data-connection-type="network">
+      <path d="M350,270 L300,300" fill="none" stroke="#4D5656" stroke-width="2" marker-end="url(#arrow-end)"/>
+    </g>
+    
+    <!-- Firewall to Database Server -->
+    <g id="connection-firewall-db" class="diagram-connection" data-connection-from="instance-firewall" data-connection-to="instance-db-server" data-connection-type="network">
+      <path d="M450,270 L500,300" fill="none" stroke="#4D5656" stroke-width="2" marker-end="url(#arrow-end)"/>
+    </g>
+    
+    <!-- Web Server to Database Server -->
+    <g id="connection-web-db" class="diagram-connection" data-connection-from="instance-web-server" data-connection-to="instance-db-server" data-connection-type="data">
+      <path d="M350,350 L450,350" fill="none" stroke="#4D5656" stroke-width="2" marker-end="url(#arrow-end)"/>
+      <text x="400" y="335" font-family="Arial" font-size="12" text-anchor="middle" class="connection-label">Data</text>
+    </g>
+    
+    <!-- Web Server to Client 1 -->
+    <g id="connection-web-client1" class="diagram-connection" data-connection-from="instance-web-server" data-connection-to="instance-client1" data-connection-type="http">
+      <path d="M300,420 L300,450" fill="none" stroke="#4D5656" stroke-width="2" marker-end="url(#arrow-end)"/>
+    </g>
+    
+    <!-- Web Server to Client 2 -->
+    <g id="connection-web-client2" class="diagram-connection" data-connection-from="instance-web-server" data-connection-to="instance-client2" data-connection-type="http">
+      <path d="M350,400 L450,450" fill="none" stroke="#4D5656" stroke-width="2" marker-end="url(#arrow-end)"/>
+    </g>
+  </g>
+  
+  <!-- Annotations -->
+  <g id="diagram-annotations" class="diagram-annotations">
+    <text x="400" y="30" font-size="20" font-weight="bold" text-anchor="middle" font-family="Arial">Basic Network Architecture</text>
+    <text x="400" y="550" font-size="12" text-anchor="middle" font-family="Arial">
+      Created with SVG Component Architecture Standard 1.0
+    </text>
+  </g>
+</svg>
