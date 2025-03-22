@@ -134,6 +134,22 @@ This document defines a strict standard for creating SVG diagrams with extractab
 </g>
 ```
 
+## Layer Structure and Ordering
+
+For proper rendering and extraction, SVG elements must follow this strict layer ordering:
+
+1. **Definitions (`<defs>`)** - component templates and markers
+2. **Component instances (`<g id="diagram-content">`)** - component placement
+3. **Connections (`<g id="connections">`)** - all lines and arrows
+4. **Annotations (`<g id="diagram-annotations">`)** - text and labels
+
+This layering ensures that:
+- Component definitions are available before instances
+- Connections appear behind text layers to prevent overlap
+- Annotations remain visible on top of other elements
+
+For detailed guidelines on creating reliable lines and arrows, see the [Line and Arrow Guidelines](./line-arrow-guidelines.md) document.
+
 ## Validation Checklist
 
 - [ ] Root SVG has all required attributes
@@ -142,9 +158,12 @@ This document defines a strict standard for creating SVG diagrams with extractab
 - [ ] Each instance references component with proper use element
 - [ ] Instances have required attributes and positioning
 - [ ] Connections properly reference instances with data attributes
+- [ ] Connections follow line and arrow best practices
 - [ ] All paths use marker definitions for arrows
+- [ ] Text is properly placed to avoid overlap with connections
 - [ ] No inline styles (use attributes for styling)
 - [ ] No hardcoded pixel values outside of viewBox attributes
+- [ ] Layers are properly ordered (defs, components, connections, annotations)
 
 ## Example Usage
 
@@ -229,6 +248,11 @@ This document defines a strict standard for creating SVG diagrams with extractab
    - Extract metadata from data attributes
 3. Extract instance relationships from connections
 
+## Related Documents
+
+- [Line and Arrow Guidelines](./line-arrow-guidelines.md) - Detailed guidelines for creating reliable connections
+
 ## Version History
 
 - 1.0: Initial standard (2025-03-19)
+- 1.1: Added layer ordering and connection guidelines (2025-03-22)
