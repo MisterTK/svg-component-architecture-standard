@@ -36,6 +36,11 @@ This document defines a strict standard for creating SVG diagrams with extractab
           data-component-type="[TYPE]" 
           data-component-name="[NAME]">
     <!-- Component content -->
+    
+    <!-- Optional connection points -->
+    <circle cx="[X]" cy="[Y]" r="0" 
+            class="extractable-component-connection-point" 
+            data-connection-point="[POSITION]"/>
   </symbol>
   
   <!-- Additional components -->
@@ -50,6 +55,13 @@ This document defines a strict standard for creating SVG diagrams with extractab
 | `viewBox` | Component dimensions | `viewBox="0 0 100 100"` |
 | `data-component-type` | Component type | `data-component-type="database"` |
 | `data-component-name` | Display name | `data-component-name="PostgreSQL Database"` |
+
+#### 2.2 Connection Point Attributes
+| Attribute | Description | Example |
+|-----------|-------------|---------|
+| `class` | Connection point marker | `class="extractable-component-connection-point"` |
+| `data-connection-point` | Position identifier | `data-connection-point="left"` |
+| `r` | Zero radius (invisible) | `r="0"` |
 
 ### 3. Component Instances
 
@@ -109,7 +121,7 @@ This document defines a strict standard for creating SVG diagrams with extractab
 #### 4.1 Required Connection Attributes
 | Attribute | Description | Example |
 |-----------|-------------|---------|
-| `id` | Connection identifier | `id="connection-1"` |
+| `id` | Connection identifier | `id="connection-api-to-db"` |
 | `class` | Connection marker | `class="diagram-connection"` |
 | `data-connection-from` | Source instance | `data-connection-from="instance-api"` |
 | `data-connection-to` | Target instance | `data-connection-to="instance-db"` |
@@ -150,6 +162,33 @@ This layering ensures that:
 
 For detailed guidelines on creating reliable lines and arrows, see the [Line and Arrow Guidelines](./line-arrow-guidelines.md) document.
 
+## Naming Conventions
+
+To ensure consistency and enable reliable processing:
+
+1. **Component IDs**: `component-[TYPE]`
+   - Use lowercase, hyphenated names: `component-database`, `component-web-server`
+
+2. **Instance IDs**: `instance-[ID]`
+   - Use semantic, descriptive IDs: `instance-auth-db`, `instance-payment-api`
+   - Avoid numeric IDs like `instance-1`, `instance-2`
+
+3. **Connection IDs**: `connection-[ID]`
+   - Use descriptive IDs that indicate relationship: `connection-api-to-db`
+   - Avoid numeric IDs like `connection-1`, `connection-2`
+
+4. **Connection Points**: `data-connection-point="[POSITION]"`
+   - Standard positions: `left`, `right`, `top`, `bottom`
+   - For custom positions: `top-left`, `bottom-right`, etc.
+
+5. **Class Names**:
+   - Component: `extractable-component`
+   - Component connection point: `extractable-component-connection-point`
+   - Instance: `component-instance`
+   - Connection: `diagram-connection`
+   - Connection label: `connection-label`
+   - Annotations: `diagram-annotations`
+
 ## Validation Checklist
 
 - [ ] Root SVG has all required attributes
@@ -164,6 +203,7 @@ For detailed guidelines on creating reliable lines and arrows, see the [Line and
 - [ ] No inline styles (use attributes for styling)
 - [ ] No hardcoded pixel values outside of viewBox attributes
 - [ ] Layers are properly ordered (defs, components, connections, annotations)
+- [ ] All IDs follow naming conventions
 
 ## Example Usage
 
@@ -181,6 +221,10 @@ For detailed guidelines on creating reliable lines and arrows, see the [Line and
       <rect x="10" y="10" width="80" height="100" rx="5" ry="5" 
             fill="#E9F7EF" stroke="#2ECC71" stroke-width="2"/>
       <text x="50" y="65" text-anchor="middle" font-family="Arial" font-size="14">Server</text>
+      
+      <!-- Connection points -->
+      <circle cx="10" cy="60" r="0" class="extractable-component-connection-point" data-connection-point="left"/>
+      <circle cx="90" cy="60" r="0" class="extractable-component-connection-point" data-connection-point="right"/>
     </symbol>
     
     <!-- Database Component -->
@@ -190,6 +234,10 @@ For detailed guidelines on creating reliable lines and arrows, see the [Line and
       <path d="M20,30 L20,90 C20,105 80,105 80,90 L80,30" 
             fill="#EBF5FB" stroke="#3498DB" stroke-width="2"/>
       <text x="50" y="65" text-anchor="middle" font-family="Arial" font-size="14">Database</text>
+      
+      <!-- Connection points -->
+      <circle cx="20" cy="60" r="0" class="extractable-component-connection-point" data-connection-point="left"/>
+      <circle cx="80" cy="60" r="0" class="extractable-component-connection-point" data-connection-point="right"/>
     </symbol>
     
     <!-- Arrow markers -->
